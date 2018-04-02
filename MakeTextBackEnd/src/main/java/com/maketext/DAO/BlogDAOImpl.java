@@ -31,16 +31,25 @@ SessionFactory sessionFactory;
 		
 	}
 
-	public boolean updateBlog(int blogId) {
+	public boolean updateBlog(Blog blog) {
 		// TODO Auto-generated method stub
 		
 		return false;
 	}
 
-	public boolean deleteBlog(Blog blog) {
-		
+	public boolean deleteBlog(int blogId) {
+		try
+		{
+			Blog blog=(Blog) sessionFactory.getCurrentSession().get(Blog.class,blogId);
+			sessionFactory.getCurrentSession().delete(blog);
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception Arised:"+e);
 			return false;
-			}
+		}
+	}
 		// TODO Auto-generated method stub
 		
 	
@@ -65,6 +74,8 @@ SessionFactory sessionFactory;
 
 	public boolean approvedBlog(Blog blog) {
 		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(blog);
+		return true;
 		/*try
 		{
 			blog.setStatus("NA");
@@ -75,7 +86,7 @@ SessionFactory sessionFactory;
 		{
 			return false;
 		}*/
-		return false;
+	
 	}
 
 	public boolean rejectedBlog(Blog blog) {
@@ -204,5 +215,7 @@ SessionFactory sessionFactory;
 		}
 		
 	}
+
+	
 
 }

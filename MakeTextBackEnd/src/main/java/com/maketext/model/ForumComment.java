@@ -2,15 +2,11 @@ package com.maketext.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-@Entity
-public class BlogComment {
-	@Id
+public class ForumComment {
 	int commentId;
 	String commentText;
 	String loginName;
-	int blogId;
+	int ForumId;
 	Date commentDate;
 	public int getCommentId() {
 		return commentId;
@@ -30,11 +26,11 @@ public class BlogComment {
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-	public int getBlogId() {
-		return blogId;
+	public int getForumId() {
+		return ForumId;
 	}
-	public void setBlogId(int blogId) {
-		this.blogId = blogId;
+	public void setForumId(int forumId) {
+		ForumId = forumId;
 	}
 	public Date getCommentDate() {
 		return commentDate;
@@ -42,6 +38,5 @@ public class BlogComment {
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
-	
 
 }

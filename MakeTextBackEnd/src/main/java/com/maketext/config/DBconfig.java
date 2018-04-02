@@ -13,6 +13,15 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
+import com.maketext.DAO.BlogDAO;
+import com.maketext.DAO.BlogDAOImpl;
+import com.maketext.model.Blog;
+import com.maketext.model.BlogComment;
+import com.maketext.model.Forum;
+import com.maketext.model.ForumComment;
+import com.maketext.model.Job;
+
 @Configuration
 @ComponentScan("com.maketext")
 @EnableTransactionManagement
@@ -41,12 +50,23 @@ public class DBconfig {
 		hibernateProp.put("hibernate.dialect","org.hibernate.dialect.OracleDialect");
 		
 		LocalSessionFactoryBuilder factoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
-		
+		factoryBuilder.addAnnotatedClass(Blog.class);
+		factoryBuilder.addAnnotatedClass(BlogComment.class);
+		factoryBuilder.addAnnotatedClass(Forum.class);
+		factoryBuilder.addAnnotatedClass(ForumComment.class);
+		factoryBuilder.addAnnotatedClass(Job.class);
 		factoryBuilder.addProperties(hibernateProp);
 		
 		System.out.println("Creating SessionFactory Bean");
 		return factoryBuilder.buildSessionFactory();
 	}
+	@Bean(name="blogDAO")
+	public BlogDAO getBlogrDAO()
+	{
+		System.out.println("---Blog DAO Implementation ---");
+		return new BlogDAOImpl();
+	}
+
 	@Bean(name="txManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory)
 	{

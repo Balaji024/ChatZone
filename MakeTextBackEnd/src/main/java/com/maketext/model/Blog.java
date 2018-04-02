@@ -12,7 +12,7 @@ public class Blog {
 	String blogContent;
 	Date createDate;
 	int likes;
-	String loginname;
+	String loginName;
 	String status;
 	public int getBlogId() {
 		return blogId;
@@ -45,10 +45,10 @@ public class Blog {
 		this.likes = likes;
 	}
 	public String getLoginname() {
-		return loginname;
+		return loginName;
 	}
 	public void setLoginname(String loginname) {
-		this.loginname = loginname;
+		this.loginName = loginname;
 	}
 	public String getStatus() {
 		return status;

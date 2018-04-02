@@ -8,8 +8,8 @@ import com.maketext.model.BlogComment;
 public interface BlogDAO {
 	
 	public boolean addBlog(Blog blog);
-	public boolean updateBlog(int blogId);
-	public boolean deleteBlog(Blog blog);
+	public boolean updateBlog(Blog blog);
+	public boolean deleteBlog(int blogId);
 	
 	public List<Blog> listBlogs(String username);
 	public boolean approvedBlog(Blog blog);
