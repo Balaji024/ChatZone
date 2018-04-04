@@ -2,9 +2,11 @@ package com.maketext.DAO;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.maketext.model.Blog;
 import com.maketext.model.BlogComment;
-
+@Service
 public interface BlogDAO {
 	
 	public boolean addBlog(Blog blog);

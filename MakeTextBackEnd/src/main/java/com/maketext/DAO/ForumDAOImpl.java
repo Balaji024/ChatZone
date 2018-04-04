@@ -2,76 +2,223 @@ package com.maketext.DAO;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.maketext.model.Blog;
-import com.maketext.model.BlogComment;
+
 import com.maketext.model.Forum;
 import com.maketext.model.ForumComment;
 
 public class ForumDAOImpl implements ForumDAO {
-
+@Autowired
+SessionFactory sessionFactory;
 	public boolean addForum(Forum forum) {
 		// TODO Auto-generated method stub
+		try
+		{
+		sessionFactory.getCurrentSession().save(forum);
+		return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		System.out.println("Exception Arised..........:"+e);
+		return false;
+		}
+		
+	}
+
+	public boolean updateForum(Forum forum) {
+		// TODO Auto-generated method stub
+		try
+		{
+		sessionFactory.getCurrentSession().saveOrUpdate(forum);
+		System.out.println("BEFORE INSERT/UPDATE " + forum.getForumId());
+		//if id==0, insert query
+		//if id exits in the table, update query
+	//INsert into product values (?,.....)
+		System.out.println("AFTER INSERT/UPDATE " + forum.getForumId());
+		return true;
+		}
+		catch(Exception e) {
+			System.out.println("Exception Arised:"+e);
+			
+		}
+
 		return false;
 	}
 
-	public boolean updateBlog(int forumId) {
+	public boolean deleteForum(int forumId) {
 		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean deleteBlog(Forum forum) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		try
+		{
+			Forum forum=(Forum) sessionFactory.getCurrentSession().get(Forum.class,forumId);
+			sessionFactory.getCurrentSession().delete(forum);
+			return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception Arised:"+e);
+			return false;
+		}
 	}
 
 	public List<Forum> listForums(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		try
+		{
+			Session session=sessionFactory.openSession();
+			Query query=session.createQuery("from Forum where loginname=:username");
+			query.setParameter("username",username);
+			List<Forum> listForums=query.list();
+			return listForums;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+					
 	}
 
 	public boolean approvedForum(Forum forum) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		try
+		{
+			forum.setStatus("A");
+			sessionFactory.getCurrentSession().update(forum);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
 	}
 
 	public boolean rejectedForum(Forum forum) {
 		// TODO Auto-generated method stub
-		return false;
+		try
+		{
+			forum.setStatus("NA");
+			sessionFactory.getCurrentSession().update(forum);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
 	}
 
-	public Blog getBlog(int forumId) {
+	public Forum getForum(int forumId) {
 		// TODO Auto-generated method stub
-		return null;
+
+		try
+		{
+		Session session=sessionFactory.openSession();
+		Forum forum=(Forum)session.get(Forum.class,forumId);
+		return forum;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 	}
 
-	public List<Blog> listAllBlogs() {
+	public List<Forum> listAllForums() {
 		// TODO Auto-generated method stub
-		return null;
+		try
+		{
+			Session session=sessionFactory.openSession();
+			Query query=session.createQuery("from Forum ");
+			
+			List<Blog> listForums=query.list();
+			return listAllForums();
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+		
 	}
 
 	public boolean incrementLike(Forum forum) {
 		// TODO Auto-generated method stub
+		try
+		{
+			int likes=forum.getLikes();
+			likes++;
+			forum.setLikes(likes);
+			sessionFactory.getCurrentSession().update(forum);
+			return true;
+		}
+	catch(Exception e)
+		{
 		return false;
+		}
 	}
 
-	public boolean addBlogComment(ForumComment forumComment) {
+	public boolean addforumComment(ForumComment forumComment) {
 		// TODO Auto-generated method stub
+		try
+		{
+		sessionFactory.getCurrentSession().save(forumComment);
+		return true;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		System.out.println("Exception Arised..........:"+e);
 		return false;
+		}
 	}
 
-	public boolean deleteBlogComment(ForumComment forumComment) {
+	public boolean deleteForumComment(ForumComment forumComment) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			sessionFactory.getCurrentSession().delete(forumComment);
+			//Product product1=(Product)session.get(Product.class,product.getProductId());
+			
+			return true;
+			}
+			catch(Exception e) {
+				System.out.println("Exception Arised:"+e);
+			return false;
+			}
 	}
 
-	public BlogComment getBlogComment(int commentId) {
+	public ForumComment getForumComment(int commentId) {
 		// TODO Auto-generated method stub
-		return null;
+		try
+		{
+		Session session=sessionFactory.openSession();
+		ForumComment forumComment=(ForumComment)session.get(ForumComment.class,commentId);
+		return forumComment;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+		
 	}
 
-	public List<BlogComment> listBlogComments(int ForumId) {
+	public List<ForumComment> listForumComments(int ForumId) {
 		// TODO Auto-generated method stub
-		return null;
+		try
+		{
+			Session session=sessionFactory.openSession();
+			Query query=session.createQuery("from ForumComment");
+			
+			List<ForumComment> listForumComments=query.list();
+			return listForumComments(0);
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 	}
 
 }

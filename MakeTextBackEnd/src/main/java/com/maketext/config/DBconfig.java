@@ -33,7 +33,7 @@ public class DBconfig {
 		DriverManagerDataSource dataSource=new DriverManagerDataSource();
 		
 		dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
-		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521/XE");
 		dataSource.setUsername("SYSTEM");
 		dataSource.setPassword("12345");
 		
@@ -47,7 +47,7 @@ public class DBconfig {
 		Properties hibernateProp=new Properties();
 		
 		hibernateProp.setProperty("hibernate.hbm2ddl.auto", "create");
-		hibernateProp.put("hibernate.dialect","org.hibernate.dialect.OracleDialect");
+		hibernateProp.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
 		
 		LocalSessionFactoryBuilder factoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
 		factoryBuilder.addAnnotatedClass(Blog.class);
@@ -61,7 +61,7 @@ public class DBconfig {
 		return factoryBuilder.buildSessionFactory();
 	}
 	@Bean(name="blogDAO")
-	public BlogDAO getBlogrDAO()
+	public BlogDAO getBlogDAO()
 	{
 		System.out.println("---Blog DAO Implementation ---");
 		return new BlogDAOImpl();

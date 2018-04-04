@@ -1,0 +1,13 @@
+com\maketext\DAO\ForumDAOImpl.class
+com\maketext\model\UserDetail.class
+com\maketext\config\DBconfig.class
+com\maketext\model\Blog.class
+com\maketext\DAO\UserDetailDAOImpl.class
+com\maketext\model\Forum.class
+com\maketext\DAO\BlogDAOImpl.class
+com\maketext\model\ForumComment.class
+com\maketext\model\Job.class
+com\maketext\model\BlogComment.class
+com\maketext\DAO\BlogDAO.class
+com\maketext\DAO\UserDetailDAO.class
+com\maketext\DAO\ForumDAO.class

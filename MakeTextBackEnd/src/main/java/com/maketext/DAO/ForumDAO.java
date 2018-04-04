@@ -9,19 +9,18 @@ import com.maketext.model.ForumComment;
 
 public interface ForumDAO {
 	public boolean addForum(Forum forum);
-	public boolean updateBlog(int forumId);
-	public boolean deleteBlog(Forum forum);
-	
+	public boolean updateForum(Forum forum);
+	public boolean deleteForum(int forumId);
 	public List<Forum> listForums(String username);
 	public boolean approvedForum(Forum forum);
 	public boolean rejectedForum(Forum forum);
-	public Blog getBlog(int forumId);
-	public List<Blog> listAllBlogs();
+	public Forum getForum(int forumId);
+	public List<Forum> listAllForums();
 	public boolean incrementLike(Forum forum);
 	
-	public boolean addBlogComment(ForumComment forumComment);
-	public boolean deleteBlogComment(ForumComment forumComment);
-	public BlogComment getBlogComment(int commentId);
-	public List<BlogComment> listBlogComments(int ForumId);
+	public boolean addforumComment(ForumComment forumComment);
+	public boolean deleteForumComment(ForumComment forumComment);
+	public ForumComment getForumComment(int commentId);
+	public List<ForumComment> listForumComments(int ForumId);
 
 }

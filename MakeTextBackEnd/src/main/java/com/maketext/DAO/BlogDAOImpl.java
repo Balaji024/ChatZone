@@ -7,10 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.maketext.model.Blog;
 import com.maketext.model.BlogComment;
+@Transactional
 @Repository("blogDAO")
+
 public class BlogDAOImpl implements BlogDAO{
 @Autowired
 SessionFactory sessionFactory;
@@ -33,7 +36,21 @@ SessionFactory sessionFactory;
 
 	public boolean updateBlog(Blog blog) {
 		// TODO Auto-generated method stub
-		
+		try
+		{
+		sessionFactory.getCurrentSession().saveOrUpdate(blog);
+		System.out.println("BEFORE INSERT/UPDATE " + blog.getBlogId());
+		//if id==0, insert query
+		//if id exits in the table, update query
+	//INsert into product values (?,.....)
+		System.out.println("AFTER INSERT/UPDATE " + blog.getBlogId());
+		return true;
+		}
+		catch(Exception e) {
+			System.out.println("Exception Arised:"+e);
+			
+		}
+
 		return false;
 	}
 
@@ -74,20 +91,17 @@ SessionFactory sessionFactory;
 
 	public boolean approvedBlog(Blog blog) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(blog);
-		return true;
-		/*try
+		try
 		{
-			blog.setStatus("NA");
+			blog.setStatus("A");
 			sessionFactory.getCurrentSession().update(blog);
 			return true;
 		}
 		catch(Exception e)
 		{
 			return false;
-		}*/
-	
-	}
+		}
+		}
 
 	public boolean rejectedBlog(Blog blog) {
 		// TODO Auto-generated method stub
