@@ -1,14 +1,11 @@
-package com.maketext.DAO;
+package com.maketext.service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 import com.maketext.model.Blog;
 import com.maketext.model.BlogComment;
 
-public interface BlogDAO {
-	
+public interface BlogService {
 	public boolean addBlog(Blog blog);
 	public boolean updateBlog(Blog blog);
 	public boolean deleteBlog(int blogId);
@@ -24,5 +21,6 @@ public interface BlogDAO {
 	public boolean deleteBlogComment(BlogComment blogComment);
 	public BlogComment getBlogComment(int commentId);
 	public List<BlogComment> listBlogComments(int blogId);
+
 
 }

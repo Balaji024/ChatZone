@@ -21,45 +21,52 @@ import com.maketext.model.BlogComment;
 import com.maketext.model.Forum;
 import com.maketext.model.ForumComment;
 import com.maketext.model.Job;
+import com.maketext.model.UserDetail;
 
 @Configuration
-@ComponentScan("com.maketext")
+@ComponentScan("com.maketext.*")
 @EnableTransactionManagement
 
 public class DBconfig {
 	@Bean(name="dataSource")
-	public DataSource getDataSource()
+	public DataSource getH2DataSource()
 	{
 		DriverManagerDataSource dataSource=new DriverManagerDataSource();
 		
-		dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
-		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521/XE");
-		dataSource.setUsername("SYSTEM");
-		dataSource.setPassword("12345");
+		dataSource.setDriverClassName("org.h2.Driver");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+		dataSource.setUsername("sa");
+		dataSource.setPassword("");
 		
 		System.out.println("---Data Source Created---");
 		return dataSource;
 	}
 	@Bean(name="sessionFactory")
 	public SessionFactory getSessionFactory()
-	{
-		
-		Properties hibernateProp=new Properties();
+	{	
+Properties hibernateProp=new Properties();
 		
 		hibernateProp.setProperty("hibernate.hbm2ddl.auto", "create");
-		hibernateProp.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
+		hibernateProp.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 		
-		LocalSessionFactoryBuilder factoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
+		LocalSessionFactoryBuilder factoryBuilder=new LocalSessionFactoryBuilder(getH2DataSource());
 		factoryBuilder.addAnnotatedClass(Blog.class);
 		factoryBuilder.addAnnotatedClass(BlogComment.class);
 		factoryBuilder.addAnnotatedClass(Forum.class);
 		factoryBuilder.addAnnotatedClass(ForumComment.class);
 		factoryBuilder.addAnnotatedClass(Job.class);
-		factoryBuilder.addProperties(hibernateProp);
-		
+		factoryBuilder.addAnnotatedClass(UserDetail.class);
+		factoryBuilder.addProperties(hibernateProp);		
 		System.out.println("Creating SessionFactory Bean");
 		return factoryBuilder.buildSessionFactory();
 	}
+	@Bean(name="txManager")
+	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory)
+	{
+		System.out.println("---Transaction Manager----");
+		return new HibernateTransactionManager(sessionFactory);
+	}
+	
 	@Bean(name="blogDAO")
 	public BlogDAO getBlogDAO()
 	{
@@ -67,11 +74,6 @@ public class DBconfig {
 		return new BlogDAOImpl();
 	}
 
-	@Bean(name="txManager")
-	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory)
-	{
-		System.out.println("---Transaction Manager----");
-		return new HibernateTransactionManager(sessionFactory);
-	}
+	
 	
 }

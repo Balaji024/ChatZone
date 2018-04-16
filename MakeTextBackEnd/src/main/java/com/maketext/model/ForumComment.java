@@ -2,7 +2,11 @@ package com.maketext.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public class ForumComment {
+	@Id
 	int commentId;
 	String commentText;
 	String loginName;

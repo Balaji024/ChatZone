@@ -1,4 +1,4 @@
-var myApp=angular.module("myApp",["ngRoute"]);
+var myApp=angular.module("myApp",['ngRoute','ngCookies']);
 
 
 
@@ -10,9 +10,9 @@ myApp.config(function($routeProvider)
 
 	$routeProvider.when("/",{templateUrl:"/index.html"})
 
-			.when("/login",{templateUrl:"c_user/Login.html"})
+			.when("/login",{templateUrl:"c_user/Login.html",controller:"UserController"})
 
-			.when("/register",{templateUrl:"c_user/Register.html"})
+			.when("/register",{templateUrl:"c_user/Register.html",controller:"UserController"})
 
 			.when("/aboutUs",{templateUrl:"template/AboutUs.html"})
 
@@ -36,11 +36,11 @@ myApp.config(function($routeProvider)
 
 myApp.run(function($rootScope,$cookieStore)
 
-{console.log("i an in run function");
+{console.log("i am in run function");
 
 console.log($rootScope.currentUser);
 
-if($rootScope.currentUser==undfined){
+if($rootScope.currentUser==undefined){
 
 	$rootScope.currentUser=$cookieStore.get('userDetails');
 

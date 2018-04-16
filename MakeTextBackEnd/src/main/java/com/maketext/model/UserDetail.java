@@ -2,16 +2,31 @@ package com.maketext.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class UserDetail {
 	@Id
 String loginname;
 String password;
-String username;
+String userName;
 String emailId;
 String mobileNumber;
 String address;
+String role;
+public String getUserName() {
+	return userName;
+}
+public void setUserName(String userName) {
+	this.userName = userName;
+}
+public String getRole() {
+	return role;
+}
+public void setRole(String role) {
+	this.role = role;
+}
 public String getLoginname() {
 	return loginname;
 }
@@ -24,12 +39,7 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-public String getUsername() {
-	return username;
-}
-public void setUsername(String username) {
-	this.username = username;
-}
+
 public String getEmailId() {
 	return emailId;
 }

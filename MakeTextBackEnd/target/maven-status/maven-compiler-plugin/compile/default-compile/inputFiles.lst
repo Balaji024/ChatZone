@@ -4,10 +4,12 @@ C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\DAO\BlogD
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\DAO\UserDetailDAO.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\model\ForumComment.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\DAO\BlogDAO.java
+C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\service\BlogService.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\model\Forum.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\model\Job.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\DAO\ForumDAOImpl.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\DAO\UserDetailDAOImpl.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\model\UserDetail.java
+C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\service\BlogServiceImpl.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\config\DBconfig.java
 C:\Users\User\workspace-new\MakeTextBackEnd\src\main\java\com\maketext\model\Blog.java

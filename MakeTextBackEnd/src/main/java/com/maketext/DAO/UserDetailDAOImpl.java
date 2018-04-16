@@ -10,7 +10,7 @@ import com.maketext.model.UserDetail;
 
 public class UserDetailDAOImpl implements UserDetailDAO {
 @Autowired
-SessionFactory sessionFactory;
+private SessionFactory sessionFactory;
 
 	public boolean registerUser(UserDetail userDetail) {
 		// TODO Auto-generated method stub

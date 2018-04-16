@@ -2,6 +2,8 @@ com\maketext\DAO\ForumDAOImpl.class
 com\maketext\model\UserDetail.class
 com\maketext\config\DBconfig.class
 com\maketext\model\Blog.class
+com\maketext\service\BlogServiceImpl.class
+com\maketext\service\BlogService.class
 com\maketext\DAO\UserDetailDAOImpl.class
 com\maketext\model\Forum.class
 com\maketext\DAO\BlogDAOImpl.class

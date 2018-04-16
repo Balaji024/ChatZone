@@ -13,10 +13,9 @@ import com.maketext.model.Blog;
 import com.maketext.model.BlogComment;
 @Transactional
 @Repository("blogDAO")
-
 public class BlogDAOImpl implements BlogDAO{
 @Autowired
-SessionFactory sessionFactory;
+private SessionFactory sessionFactory;
 	public boolean addBlog(Blog blog) {
 		// TODO Auto-generated method stub
 		

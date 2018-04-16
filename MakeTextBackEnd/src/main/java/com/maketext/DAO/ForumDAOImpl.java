@@ -14,7 +14,7 @@ import com.maketext.model.ForumComment;
 
 public class ForumDAOImpl implements ForumDAO {
 @Autowired
-SessionFactory sessionFactory;
+private SessionFactory sessionFactory;
 	public boolean addForum(Forum forum) {
 		// TODO Auto-generated method stub
 		try

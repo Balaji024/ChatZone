@@ -1,10 +1,11 @@
 myApp.controller("UserController",function($scope,$rootScope,$http,$location){
 	$scope.User={loginName:'',password:'',userName:'',emailId:'',mobileNumber:'',address:'',role:''}
 	
-	$scope.register=function()
+	$scope.registerUser=function()
 	{
 		console.log('Entered into SignUp');
 		$scope.User.role='ROLE-USER';
+		console.log('Entered into ');
 		$http.post('http://localhost:8082/MakeTextMiddleWare/registerUser',$scope.User)
 		.then(function(response)
 		{
@@ -14,7 +15,7 @@ myApp.controller("UserController",function($scope,$rootScope,$http,$location){
 		});
 	}
 	
-	$scope.login=function()
+	$scope.login=function(user)
 	{
 		console.log('Entered into Login');
 		
@@ -23,8 +24,7 @@ myApp.controller("UserController",function($scope,$rootScope,$http,$location){
 		{
 			$scope.User=response.data;
 			$rootScope.currentUser=response.data;
-			
-			
+						
 			console.log(rootScope.currentUser);
 			$location.path("/UserHome");
 		});
